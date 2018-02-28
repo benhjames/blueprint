@@ -4,6 +4,8 @@
  * Licensed under the terms of the LICENSE file distributed with this project.
  */
 
+import * as React from "react";
+
 const CLASSNAME_EXCLUDED_FROM_TEXT_MEASUREMENT = "bp-table-text-no-measure";
 
 /**
@@ -317,7 +319,7 @@ export const Utils = {
         approxCharWidth: number,
         approxLineHeight: number,
         horizontalPadding: number,
-        numBufferLines: number,
+        numBufferLines: number
     ): number {
         const numCharsInCell = cellText == null ? 0 : cellText.length;
 
@@ -329,6 +331,10 @@ export const Utils = {
         const approxCellHeight = approxNumLinesDesired * approxLineHeight;
         return approxCellHeight;
     },
+
+    isElementOfType<P = {}>(element: any, ComponentClass: React.ComponentClass<P>): element is React.ReactElement<P> {
+        return element != null && element.type === React.createElement(ComponentClass).type;
+    }
 };
 
 /**
